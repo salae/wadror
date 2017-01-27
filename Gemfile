@@ -7,6 +7,8 @@ gem 'rails', '4.1.8'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'better_errors'
   gem 'pry-rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

@@ -10,6 +10,7 @@ class BreweriesController < ApplicationController
   # GET /breweries/1
   # GET /breweries/1.json
   def show
+    @ratings = @brewery.ratings
   end
 
   # GET /breweries/new
