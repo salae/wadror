@@ -15,7 +15,10 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
-    @clubs = BeerClub.all
+    # poistetaan klubit johon kirjautunut jo kuuluu, karkea ratkaisu mutta pitäisi toimia
+    cu_clubs = current_user.beer_clubs
+    exclude_ids = cu_clubs.map {|c| c.id}
+    @clubs = BeerClub.all.where.not(id: exclude_ids)
   end
 
   # GET /memberships/1/edit
@@ -33,7 +36,11 @@ class MembershipsController < ApplicationController
         format.html { redirect_to user_path current_user, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
-        @clubs = BeerClub.all
+        # poistetaan klubit johon kirjautunut jo kuuluu, karkea ratkaisu mutta pitäisi toimia
+        cu_clubs = current_user.beer_clubs
+        exclude_ids = cu_clubs.map {|c| c.id}
+        @clubs = BeerClub.all.where.not(id: exclude_ids)       
+        # @clubs = BeerClub.all
         format.html { render :new }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
