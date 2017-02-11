@@ -11,9 +11,12 @@
   <% end %>
 </p>
 
-<p>member of 
+<p>
+  <% unless @user.beer_clubs.empty? %>
+  member of 
   <% @user.beer_clubs.each do |club| %>
       <%=link_to club.name, club %>
+  <% end %>
   <% end %>
 </p>
 
