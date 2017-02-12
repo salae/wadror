@@ -13,7 +13,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-its'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'sqlite3', platforms: [:mingw, :ruby, :mswin]
 end
 
 group :development do
@@ -21,7 +21,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', :platform => 'ruby'
   gem 'rails_12factor'
 end
 
@@ -53,7 +53,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7', platforms: [:mingw, :ruby]
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -66,3 +66,5 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+gem 'nokogiri', ">= 1.5.0.beta.2", "<=1.7.0.1"
