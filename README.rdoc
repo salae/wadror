@@ -1,3 +1,0 @@
-== README
-
-Sovellus Herokussa: https://murmuring-springs-45363.herokuapp.com/

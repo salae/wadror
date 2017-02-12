@@ -10,6 +10,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-its'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
@@ -24,7 +25,10 @@ group :production do
 end
 
 group :test do
-  # gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
 end
 
 ruby '2.1.5'
