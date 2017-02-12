@@ -38,10 +38,10 @@ describe "User" do
       it "can see his/her own ratings on his/her own page but doesn't see other people's ratings " do
         user= FactoryGirl.create(:user, username: "Tiina")
         sign_in(username:"Tiina", password:"Foobar1")
-        ratings = create_ratings('b', user, 24, 12, 45)    
+        ratings = create_ratings_with_str_user('b', user, 24, 12, 45)    
 
         user2= FactoryGirl.create(:user, username: "Laura")
-        ratings2 = create_ratings('d',user2, 8, 35)
+        ratings2 = create_ratings_with_str_user('d',user2, 8, 35)
         visit user_path(user)
 
         ratings.each do |rating_name|
@@ -66,7 +66,7 @@ describe "User" do
   end
 end
 
-def create_ratings(str, user, *scores)
+def create_ratings_with_str_user(str, user, *scores)
   
   scores.each do |score|
     beer = FactoryGirl.create(:beer, name: str.concat('a'))
