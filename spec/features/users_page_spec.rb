@@ -63,7 +63,6 @@ describe "User" do
         page.find("a[href ='#{rating_path(id: 1)}']").click
 
        expect(Rating.count).to eq(count_before - 1)
-       save_and_open_page
       end
     end
   end
