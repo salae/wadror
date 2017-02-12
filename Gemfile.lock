@@ -201,6 +201,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.1.8)
   rails_12factor
+  rake
   rspec-its
   rspec-rails (~> 3.5)
   sass-rails (~> 4.0.3)
