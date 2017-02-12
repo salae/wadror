@@ -53,14 +53,17 @@ describe "User" do
       end
 
       it "can delete his/her own rating" do
+        #turhaa toistoa mutta en saa nyt toimimaan muuten, parannellaan myöhemmin
+        user= FactoryGirl.create(:user, username: "Tiina")
+        sign_in(username:"Tiina", password:"Foobar1")
+        ratings = create_ratings_with_str_user('b', user, 24, 12, 45)   
+        visit user_path(user)       
         count_before = Rating.count
 
-        #page.find("a:eq(2)").click_link('delete')
+        page.find("a[href ='#{rating_path(id: 1)}']").click
 
-        # if(page.find("a")[:href] == "/ratings/1")
-        #     click_on("delete")
-        # end
-       # expect(Rating.count).to eq(count_before - 1)
+       expect(Rating.count).to eq(count_before - 1)
+       save_and_open_page
       end
     end
   end

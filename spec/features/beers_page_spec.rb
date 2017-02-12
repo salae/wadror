@@ -9,14 +9,7 @@ describe "Beer" do
     before :each do
         FactoryGirl.create :user
         sign_in(username:"Pekka", password:"Foobar1")
-    end  
-
-    # it "with right credentials" do
-      
-
-    #   expect(page).to have_content 'Welcome back!'
-    #   expect(page).to have_content 'Pekka'
-    # end   
+    end   
 
     it "can be added using the web form when valid name for beer is given" do
         visit new_beer_path
