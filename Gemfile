@@ -30,6 +30,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 ruby '2.1.5'
@@ -68,3 +69,5 @@ gem 'bcrypt', '~> 3.1.7', platforms: [:mingw, :ruby]
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'nokogiri', ">= 1.5.0.beta.2", "<=1.7.0.1"
+
+gem 'httparty'

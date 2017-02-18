@@ -25,25 +25,22 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
-end
 
-describe "Ratings page" do
-  it "lists ratings and their number" do
-    ratings = create_ratings(20,15,10,41,26)
-    visit ratings_path
 
-    expect(page).to have_content "Number of ratings: #{ratings.count}"
-    ratings.each do |rating_name|
-      expect(page).to have_content rating_name
-    end     
-  end
-end 
+  describe "when several exist" do
+    before :each do
+      create_beers_with_ratings(FactoryGirl.create(:brewery), "helles", user, 10, 7, 9)
+      visit ratings_path
+    end
 
-def create_ratings(*scores)
-  s = 'b'
-  user = FactoryGirl.create(:user)
-  scores.each do |score|
-    beer = FactoryGirl.create(:beer, name: s += 'a' )
-    FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+    it "all are shown at ratings page" do
+      expect(page).to have_content "anonymous 10 #{user.username}"
+      expect(page).to have_content "anonymous 7 #{user.username}"
+      expect(page).to have_content "anonymous 9 #{user.username}"
+    end
+
+    it "their count is shown at ratings page" do
+      expect(page).to have_content "Total of #{Rating.count} ratings given"
+    end
   end
 end
