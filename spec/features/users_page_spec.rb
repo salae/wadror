@@ -34,10 +34,12 @@ describe "User" do
 
  describe "when have given ratings" do
     before :each do
-      create_beers_with_ratings(FactoryGirl.create(:brewery), "helles", user, 7, 9)
-      create_beers_with_ratings(FactoryGirl.create(:brewery, name: "Schlenkerla"), "bock", user, 10)
+      s1 = FactoryGirl.create :style, name: "helles" 
+      s2 = FactoryGirl.create :style, name: "bock"      
+      create_beers_with_ratings(user, s1,FactoryGirl.create(:brewery) , 7, 9)
+      create_beers_with_ratings(user, s2, FactoryGirl.create(:brewery), 10)
       user2 = FactoryGirl.create(:user, username: "Brian")
-      create_beers_with_ratings(FactoryGirl.create(:brewery), "helles", user2, 50)
+      create_beers_with_ratings(user2, s1, FactoryGirl.create(:brewery), 50)
       visit user_path(user.id)
     end
 

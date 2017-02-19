@@ -13,7 +13,11 @@ FactoryGirl.define do
   factory :beer do
     name "anonymous"
     brewery # luo uuden panimon
-    style "Lager"
+    style # luo uuden tyylin
+  end
+
+  factory :style do
+    name "lager"
   end
 
   factory :rating do
