@@ -467,8 +467,8 @@
       "C:/Sites/ratebeer/lib/beermapping_api.rb": [
         1,
         1,
-        5,
-        9,
+        4,
+        8,
         null,
         null,
         1,
@@ -476,19 +476,20 @@
         1,
         4,
         null,
-        4,
-        4,
+        0,
+        0,
         null,
-        4,
+        0,
         null,
-        3,
-        3,
-        4,
+        0,
+        0,
+        0,
         null,
         null,
         null,
         1,
         4,
+        0,
         null,
         null
       ],
@@ -709,6 +710,6 @@
         0
       ]
     },
-    "timestamp": 1487444594
+    "timestamp": 1487447520
   }
 }
