@@ -6,6 +6,7 @@ include Helpers
 describe "Beers" do
   before :each do
     FactoryGirl.create :user
+    FactoryGirl.create :style
     FactoryGirl.create :brewery, name: "Schlenkerla"
     sign_in(username:"Pekka", password:"Foobar1")
     visit new_beer_path
