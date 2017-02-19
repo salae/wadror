@@ -37,8 +37,8 @@ describe "User" do
       s1 = FactoryGirl.create :style, name: "helles" 
       s2 = FactoryGirl.create :style, name: "bock" 
       brew = FactoryGirl.create :brewery, name:"Schlenkerla"     
-      create_beers_with_ratings(user, s1,FactoryGirl.create(:brewery) , 7, 9)
-      create_beers_with_ratings(user, s2, brew, 10)
+      create_beers_with_ratings(user, s1,FactoryGirl.create(:brewery),10, 7, 9,12,14)
+      create_beers_with_ratings(user, s2, brew, 10,42,33,41,24,11)
       user2 = FactoryGirl.create(:user, username: "Brian")
       create_beers_with_ratings(user2, s1, brew, 50)
       visit user_path(user.id)
