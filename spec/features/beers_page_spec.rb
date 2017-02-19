@@ -13,6 +13,7 @@ describe "Beers" do
 
   it "can be added if valid name given" do
     fill_in('beer_name', with:'Urbock')
+    select('Lager', from:'beer[style_id]')
     expect{
       click_button('Create Beer')
     }.to change{Beer.count}.by(1)

@@ -129,7 +129,7 @@ describe "favorite brewery" do
       create_beers_with_ratings(user, s1, brewery, 10, 7, 9)
       create_beers_with_ratings(user, s2, brewery, 25, 34,18)
 
-      expect(user.favorite_style.name).to eq("ipa")
+      expect(user.favorite_style.name).to eq("IPA")
     end          
   end 
 end
