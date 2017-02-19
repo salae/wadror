@@ -56,9 +56,9 @@ describe "User" do
 
     it "when logged in, can delete own ratings" do
       sign_in(username:"Pekka", password:"Foobar1")
-      visit user_path(user.id)
+      visit user_path(user.id)      
       expect{
-        page.all('a')[10].click
+        page.all('a')[13].click
       }.to change{Rating.count}.by(-1)
     end  
 
@@ -69,5 +69,16 @@ describe "User" do
     it "favorite brewery is shown at user page" do
       expect(page).to have_content "Favorite brewery: Schlenkerla"  
     end     
+  end
+end
+def create_beer_with_rating(user, style, brewery, score)
+  beer = FactoryGirl.create(:beer, style: style, brewery: brewery)
+  FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+  beer
+end
+
+def create_beers_with_ratings(user, style, brewery, *scores)
+  scores.each do |score|
+    create_beer_with_rating(user, style, brewery, score)
   end
 end
