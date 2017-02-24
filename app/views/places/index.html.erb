@@ -5,24 +5,39 @@
     <%= submit_tag "Search" %>
   <% end %>
 
-  <% if @places %>
-    <table>
-      <thead>
-        <% Place.rendered_fields.each do |f| %>
-          <td><%= f %></td>
-        <% end %>
-      </thead>
-      <% @places.each do |place| %>
-        <tr>
-          <td><%= place.id %></td>
-          <td><%= place.name %></td>
-          <td><%= place.status %></td>
-          <td><%= place.street %></td>
-          <td><%= place.city %></td> 
-          <td><%= place.zip %></td> 
-          <td><%= place.country %></td> 
-          <td><%= place.overall %></td>      
-        </tr>
+<% if @weather %>
+  <h4>The current beer weather in <%= @weather.city %></h4>
+  <img src="<%= @weather.image %>" >
+  <br>
+  <div>
+    <%= @weather.temperature %> Celcius
+  </div>
+  <br>
+  <div>
+    <strong>wind:</strong> 
+      <%= @weather.wind_speed %> m/sec,
+      direction <%= @weather.wind_direction %> 
+  </div>  
+<% end %>
+
+<% if @places and @places.empty?%>
+  <h4>No locations known...</h4>
+<% elsif @places %>
+  <h4>Places to get your beer</h4>
+  <table>
+    <thead>
+      <td>name</td>
+      <% Place.rendered_fields.each do |f| %>
+        <td><%=f %></td>
       <% end %>
-    </table>
+    </thead>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= link_to place.name, place_path(place.id) %></td>
+        <% Place.rendered_fields.each do |f| %>
+          <td><%= place.send(f) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
   <% end %>
