@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :beers
-  resources :breweries
+  resources :breweries do
+    post 'toggle_activity', on: :member
+ end
   resources :ratings, only: [:index, :new, :create, :destroy]
   resources :places, only: [:index, :show]
   resources :styles

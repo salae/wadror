@@ -64,6 +64,15 @@ class BreweriesController < ApplicationController
     end
   end
 
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, (not brewery.active)
+
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to :back, notice:"brewery activity status changed to #{new_status}"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
@@ -81,4 +90,5 @@ class BreweriesController < ApplicationController
     #     admin_accounts.key?(username) == true and admin_accounts[username] == password
     #   end
     # end
+
 end
