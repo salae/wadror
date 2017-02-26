@@ -12,6 +12,10 @@ class Brewery < ActiveRecord::Base
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
+  def to_s
+    "#{self.name}"  
+  end 
+
   def print_report
     puts name
     puts "established at year #{year}"
@@ -22,4 +26,10 @@ class Brewery < ActiveRecord::Base
     self.year = 2017
     puts "changed year to #{year}"
   end
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order.take(n)
+  end
+
 end

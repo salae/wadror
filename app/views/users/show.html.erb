@@ -13,7 +13,7 @@
 
 <% if @user.ratings.any? %>
 
-  <p>Has made <%= pluralize(@user.ratings.count, "rating", "ratings") %>, average rating <%= @user.average_rating %>.</p>
+  <p>Has made <%= pluralize(@user.ratings.count, "rating", "ratings") %>, average rating <%= round(@user.average_rating) %>.</p>
   <p> Favorite beer: <%= @user.favorite_beer.name %> </p>
   <p> Favorite brewery: <%= @user.favorite_brewery.name %> </p>
   <p> Favorite style: <%= @user.favorite_style %> </p>  

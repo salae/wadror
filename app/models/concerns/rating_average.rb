@@ -12,7 +12,11 @@ module RatingAverage
     # tai aineiston esimerkissä:
     # return 0 if ratings.empty?
     # ratings.map {|r| r.score }.sum / ratings.count.to_f
-    ratings.average(:score)
-  end    
-    
+    if ratings.count == 0
+      return 0
+    else
+      ratings.average(:score)
+    end    
+  end   
+
 end
