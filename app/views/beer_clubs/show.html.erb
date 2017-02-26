@@ -7,29 +7,33 @@
   Founded <%= @beer_club.founded %> in <%= @beer_club.city %>
 </p>
 
-<h2>Members</h2>
 
+
+<% if @beer_club.members.any? %>
   <ul>
-  <% @beer_club.members.each do |member| %>
-    <li> 
-      <%= link_to member.username, member %>
-    </li>
-  <% end %>
+    <% @beer_club.members.each do |member| %>
+      <li>
+        <%= link_to member.username, member %>
+      </li>      
+    <% end %>
   </ul>
+<% else %>
+  <p>no members</p>
+<% end %>
 
 <% if current_user %>
-  <% if not @beer_club.members.include? current_user %>
-    <%= form_for(@membership) do |f| %>
-      <%= f.hidden_field :beer_club_id %>
-      <%= f.submit value:"join the club" %>
-    <% end %>
-  <% else %>
+  <% if current_user.is_member_of? @beer_club %>
     <%= form_for(@membership, method: "delete") do |f| %>
       <%= f.hidden_field :beer_club_id %>
-      <%= f.submit value:"end the membership" %>
-    <% end %>  
-  <% end %>
+      <%= f.submit value: "end the membership", class:"btn btn-danger" %>
+    <% end %>     
+  <% else %>
+    <%= form_for(@membership) do |f| %>
+      <%= f.hidden_field :beer_club_id %>
+      <%= f.submit value:"join the club", class:'btn btn-primary' %>
+    <% end %>
+<% end %>
 
-  <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> <br>
-  <%= link_to 'Destroy the club', @beer_club, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_beer_club_path(@beer_club), class:'btn btn-primary' %> <br>
+  <%= link_to 'Destroy the club', @beer_club, class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

@@ -49,6 +49,9 @@ class User < ActiveRecord::Base
       }
     end  
     averages_of_styles.sort_by{ |b| -b[:rating] }.first[:style]
+  end 
+   
+  def is_member_of?(beer_club)
+    beer_clubs.include? beer_club
   end  
-
 end

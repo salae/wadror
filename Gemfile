@@ -16,8 +16,11 @@ group :development, :test do
   gem 'sqlite3', platforms: [:mingw, :ruby, :mswin]
 end
 
+gem 'bootstrap-sass'
+
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'rails_layout'
 end
 
 group :production do
