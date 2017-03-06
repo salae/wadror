@@ -7,6 +7,20 @@ class BreweriesController < ApplicationController
   def index
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
+
+    order = params[:order] || 'name'
+
+    @active_breweries = case order
+      when 'name' then @active_breweries.sort_by{ |b| b.name }
+      when 'year' then @active_breweries.sort_by{ |b| b.year }
+    end
+
+    @retired_breweries = case order
+      when 'name' then @retired_breweries.sort_by{ |b| b.name }
+      when 'year' then @retired_breweries.sort_by{ |b| b.year }
+    end   
+
+
   end
 
   # GET /breweries/1
@@ -47,7 +61,7 @@ class BreweriesController < ApplicationController
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
         format.json { render :show, status: :ok, location: @brewery }
-      else
+      else 
         format.html { render :edit }
         format.json { render json: @brewery.errors, status: :unprocessable_entity }
       end
